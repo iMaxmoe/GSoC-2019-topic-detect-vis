@@ -1,0 +1,19 @@
+title: Rapid Annotator 2.0
+description: The blog is about my updates on the progess on the Google Code of Summer's project, Rapid Annotator 2.0.
+
+show_downloads: true
+
+baseurl: "/GSoC-2019-topic-detect-vis/" # change this to the subpath of your site, e.g. /blog. Leave it empty if you don't need it.
+url: "https://imaxmoe.github.io" # change this to the base hostname & protocol for your site
+
+google_analytics:
+# cayman-blog date format
+# refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
+cayman-blog:
+  date_format: "%b %-d, %Y"
+
+theme: jekyll-theme-cayman
+
+# social
+author: "Xumeng Chen"
+#  admins:
