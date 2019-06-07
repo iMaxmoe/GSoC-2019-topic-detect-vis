@@ -6,7 +6,9 @@ Project with the [Distributed Little Red Hen Lab](http://www.redhenlab.org/)._
 This project aims at creating a modularized and navigable visualization dashboard for topic detection based on 
 Red Hen Lab's multimodal data.
 
-Project Mentors: Francis Steen, Qu Huamin
+Project Mentors: Francis Steen, Qu Huamin, Robert Ochshorn
+
+Tech Blog(Updates posted here): https://imaxmoe.github.io/GSoC-2019-topic-detect-vis/
 
 ## Project Outline
 The dashboard contains two main canvases for different uses.
@@ -26,3 +28,4 @@ The dashboard contains two main canvases for different uses.
 [Possible Module 2] Emotion Detection   
 
 [Possible Module 3] Relationship Detection 
+
