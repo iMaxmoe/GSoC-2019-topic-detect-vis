@@ -7,4 +7,4 @@
 #
 layout: home
 ---
-The link to the _github repository_ source code : [Rapid Annotator 2](https://github.com/gulshan-mittal/RapidAnnotator-2.0)
+The link to the _github repository_ source code : [topic-detect-vis](https://github.com/iMaxmoe/GSoC-2019-topic-detect-vis)
