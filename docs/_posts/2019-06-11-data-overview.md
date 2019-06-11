@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Data Overview"
+title: "Red Hen's Textual Data Overview"
 ---
 
 # Red Hen's Textual Data Overview
