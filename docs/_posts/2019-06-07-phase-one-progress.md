@@ -14,13 +14,13 @@ The main job in this phase is to establish a robust pipeline to effectively fetc
 
 Skim through Dr. Weixin's data processing code, make brief documentation for latter programmers, pick up the reusable code. Also learn something from it LOL.
 
-__- Segmentation__
+- __Segmentation__
 
 - [x] cleansing.py
 - [x] collect_program_names.py
 - [x] combine_agenda_week.py
 - [x] get_pair_data.py
-- [x] read_data.py
+- [ ] read_data.py
 - [ ] readingfiles.py
 
 __- Clustering__
