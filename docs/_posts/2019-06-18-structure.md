@@ -3,8 +3,6 @@ layout: post
 title: "Topic Detection Dashboard Project Framework"
 ---
 
-# Topic Detection Dashboard Project Framework
-
 ### 1. Background
 
 This framework is devised with the goal of establishing a reusable and scalable dashboard. It is designed with reference to the frameworks of [Viz2016](http://128.97.229.75), [NewsSCOPE](http://newsscape.library.ucla.edu/~broadwell/newsscope/). Special thanks to Dr. Peter Broadwell and Dr. Weixin Li for generously sharing their code. Thanks Professor Steen for his consistent assistance and coordination. Also, thanks Leo for providing me with professional and useful suggestions.
