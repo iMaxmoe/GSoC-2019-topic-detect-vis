@@ -18,7 +18,7 @@ This framework is devised with the goal of establishing a reusable and scalable 
 - Vega-Lite (and others): high-level toolkit (do not rebuild visual wheels!)
 - Altair: play around with data in jupyter notebook (in later stages)
 
-**Back End **
+**Back End**
 
 - Stanford NER: extract named entity from script file
 - MongoDB: in this project, we no longer store .json files statically on the server; instead, we takes advantage of NoSQL database, which enables the scaling of data and increases automation. It allows us to add attributes to each tuple without the need of regenerating all the files (considering the amount of data, the re-generation work will be awful...). This will be especially beneficial to further data mining and future work.
