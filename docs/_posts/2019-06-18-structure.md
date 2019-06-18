@@ -3,7 +3,7 @@ layout: post
 title: "Topic Detection Dashboard Project Framework"
 ---
 
-#Topic Detection Dashboard Project Framework
+# Topic Detection Dashboard Project Framework
 
 ### 1. Background
 
