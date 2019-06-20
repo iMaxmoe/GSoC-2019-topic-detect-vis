@@ -20,24 +20,24 @@ Skim through Dr. Weixin's data processing code, make brief documentation for lat
 - [x] collect_program_names.py
 - [x] combine_agenda_week.py
 - [x] get_pair_data.py
-- [ ] read_data.py
-- [ ] readingfiles.py
+- [x] read_data.py
+- [x] readingfiles.py
 
 __- Clustering__
 
-- [ ] generate_chunk_ner_struc.py
-- [ ] save_clusters.py
-- [ ] save_clusters_v2.py
-- [ ] save_week_top_topics.py
-- [ ] sw.py
-- [ ] topic_clustering.py
-- [ ] topic_clustering_v2.py
+- [x] generate_chunk_ner_struc.py
+- [x] save_clusters.py
+- [x] save_clusters_v2.py
+- [x] save_week_top_topics.py
+- [x] sw.py
+- [x] topic_clustering.py
+- [x] topic_clustering_v2.py
 
 __- Tracking__
 
-- [ ] tracking.py
-- [ ] tracking_v2.py
-- [ ] track_gun_violence_by_week.py
+- [x] tracking.py
+- [x] tracking_v2.py
+- [x] track_gun_violence_by_week.py
 
 __- Miscellaneous__
 
@@ -47,11 +47,11 @@ __- Miscellaneous__
 
 - [x] graph_cycle.py
 
-- [ ] image.py
+- [x] image.py
 
-- [ ] new_topic_model_final_with_image.py
+- [x] new_topic_model_final_with_image.py
 
-- [ ] probability.py
+- [x] probability.py
 
 - [x] process.py
 
@@ -59,19 +59,19 @@ __- Miscellaneous__
 
 - [x] process_other_year_data.py
 
-- [ ] run_CNN_out.py
+- [x] run_CNN_out.py
 
-- [ ] run_previous_topic.py
+- [x] run_previous_topic.py
 
-- [ ] run_week_topics.py
+- [x] run_week_topics.py
 
-- [ ] sort.py
+- [x] sort.py
 
-- [ ] sort_old.py
+- [x] sort_old.py
 
-- [ ] topic_model_v2.py
+- [x] topic_model_v2.py
 
-- [ ] vocabulary.py
+- [x] vocabulary.py
 
   
 
@@ -79,8 +79,8 @@ __- Miscellaneous__
 
 - Enable data query given keywords and a random time range, say one week, one month, one year.
 
+  - [x] Detect the high frequency topics in a <u>certain time interval</u> at a <u>given region</u>
   - [ ] Given a keyword, count its occurrences in a <u>certain time interval</u> at a <u>given region</u>
-  - [ ] Detect the high frequency topics in a <u>certain time interval</u> at a <u>given region</u>
 
 - Data formatted in JSON and return to front end
 
