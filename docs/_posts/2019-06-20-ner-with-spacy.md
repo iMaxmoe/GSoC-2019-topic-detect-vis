@@ -1,9 +1,7 @@
 ---
 layout: post
-title: "Named Entity Recognition with spaCy"
+title: "Named Entity Recognition with spaCy"`
 ---
-
-# Named Entity Recognition with `spaCy`
 
 ### 1. `NLTK` or `spaCy` ?
 

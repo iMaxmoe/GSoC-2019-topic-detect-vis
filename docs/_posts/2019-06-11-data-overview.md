@@ -3,8 +3,6 @@ layout: post
 title: "Red Hen's Textual Data Overview"
 ---
 
-# Red Hen's Textual Data Overview
-
 Red Hen relies on flat files rather than databases, and on metadata stored in time-stamped single lines rather than in multi-line hierarchical systems such as xml.
 
 In this visualization project, we will rely on the textual data.
