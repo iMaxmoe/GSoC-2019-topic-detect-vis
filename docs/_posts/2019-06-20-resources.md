@@ -13,6 +13,8 @@ Therefore, I maintain this page to retrieve some appealing work done by other pe
 
 ### Open Source Packages for NLP
 
+[Prodigy: annotation tool helping train and test entity recognition models](https://prodi.gy/)
+
 [TextRank for Keyword Extraction by Python](https://towardsdatascience.com/textrank-for-keyword-extraction-by-python-c0bae21bcec0)
 
 **NLTK related**
