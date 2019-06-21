@@ -38,7 +38,7 @@ Aside from installing the package, one must install a specified model to conduct
 
 Much NLP work still needs to be done as for extracting meaningful topics. I start with the easy part, extract top mentioned persons from the script.
 
-![wordcloud](../assets/wordcloud.png)
+![wordcloud](https://github.com/iMaxmoe/GSoC-2019-topic-detect-vis/blob/master/docs/assets/wordcloud.png)
 *Word Cloud for People of 2019-06-17*
 
 This is my attempt to visualize top mentioned people on 2019-06-17. The size of a name is based on its counts in the day's news scripts. 
