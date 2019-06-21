@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Named Entity Recognition with spaCy"`
+title: "Word Cloud for Top Mentioned People"`
 ---
 
 In this post, I will show my attempt to extract top-mentioned persons from the tv script and draw a word cloud accordingly.
