@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>June's Vis</title>
+    <meta name="description" content="GoSC news dashboard">
+    <meta property="og:description" content="GoSC news dashboard">
+    <meta property="og:url" content="http://xchenco.student.ust.hk/">
+    <meta property="og:image" content="logal.png">
+    <meta property="og:type" content="website">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" integrity="sha256-oDCP2dNW17Y1QhBwQ+u2kLaKxoauWvIGks3a4as9QKs=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="home.css">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125898184-1"></script>
+
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" integrity="sha256-RKNmL9+6j/3jB72OcIg8OQr91Bi4OgFPnKQOFS1O+fo=" crossorigin="anonymous"></script>
+
+    <script src="page.js"></script>
+    <script src="lollipop.js"></script>
+    <script src="wordcloud.js"></script>
+</head>
+
+<body>
+    <aside class="ui sidebar inverted large vertical menu mobile hide">
+        <div class="item">
+            <header class="ui vertical segment inverted center aligned icon header"><img src="logo.png" alt=" logo" class="icon" id="sidebar-logo">
+                <div class="content"></div>
+            </header>
+        </div>
+        <a class="item" href="index.html"><i class="map icon"></i>Dashboard</a>
+        <a class="item" hred="#"><i class="search icon"></i>Event Search(Working)</a>
+        <a href="https://github.com/iMaxmoe/GSoC-2019-topic-detect-vis" class="item"><i class="github icon"></i>View on Github</a>
+        <a href="#" class="item aboutTriggerer"><i class="gem outline icon"></i>License, credit and stuff</a>
+        <a href="#" class="item shareTriggerer"><i class="share icon"></i>Share this website</a>
+        <a href="#" class="item friendsTriggerer"><i class="thumbs up outline icon"></i>Link exchange</a>
+    </aside>
+
+    <div class="pusher">
+        <button class="ui black top upper attached big icon button toggler mobile hide">
+            <i class="bars icon"></i>
+        </button>
+
+        <div id="search-bar-wrapper" class="row">
+            <div class="col col-6 col-sm-3 col-md-1 col-lg-1 header-logo">
+                <img src="logo.png" alt="Red Hen" class="image" id="modal-logo" left>
+            </div>
+
+            <div class="col col-12 col-sm-6 col-md-4 col-lg-4 title">
+                <h1> Red Hen's News Dashboard</h1>
+            </div>
+
+            <div class="col col-12 col-sm-6 col-md-4 col-lg-4 tag">
+                <a>From</a>
+                <input type="date" id="from" name="from" min="2019-06-01" style="border-radius: 3px;">
+                <a>To</a>
+                <input type="date" id="to" name="to" min="2019-06-01" style="border-radius: 3px;">
+            </div>
+
+            <div class="col col-12 col-sm-6 col-md-2 col-lg-2 filter">
+                <span class="custom-dropdown">
+                    <form>
+                        <select required>
+                            <option value="" disabled selected hidden>Please Choose...</option>
+                            <option value="0">Person Counts</option>
+                            <option value="1">Occupation Counts</option>
+                        </select>
+                    </form>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="top10" class="col col-12 col-sm-6 col-md-5 col-lg-5 card top10">Card1</div>
+            <div id="wordcloud" class="col col-12 col-sm-6 col-md-5 col-lg-5 card wordcloud"></div>
+        </div>
+
+        <div id="heatmap" class="row card">Card3</div>
+
+        <!-- <div id="navbar">
+            <text>
+                        Date:  
+                    </text>
+            <select onchange="changeDateLollipop(this.value), changeDateWordcloud(this.value)">
+                        <option selected="selected" value="2019-06-01">2019-06-01</option>
+                        <option value="2019-06-02">2019-06-02</option>
+                        <option value="2019-06-03">2019-06-03</option>
+                        <option value="2019-06-04">2019-06-04</option>
+                        <option value="2019-06-05">2019-06-05</option>
+                        <option value="2019-06-06">2019-06-06</option>
+                        <option value="2019-06-07">2019-06-07</option>
+                        <option value="2019-06-08">2019-06-08</option>
+                        <option value="2019-06-09">2019-06-09</option>
+                        <option value="2019-06-10">2019-06-10</option>
+                    </select>
+
+            <button id="wordcloudButton">Word Cloud</button>
+            <button id="heatmapButton">Heat Map</button>
+
+            <div id="radio-select">
+                <label><input id="name" type="radio" name="typeOfCloud" checked> Names</label>
+                <label><input id="occupation" type="radio" name="typeOfCloud"> Occupations</label>
+            </div> -->
+
+        <!-- <div id="left"></div>
+        <div id="canvas"></div> -->
+    </div>
+    </div>
+
+    <!-- Detailed content for side bar -->
+    <div class="ui large basic modal" id="aboutModal"><i class="close icon"></i>
+        <div class="header">License, credit and stuff</div>
+        <div class="image content"><img src="logo.png" alt="Red Hen" class="image" id="modal-logo">
+            <div class="description">
+                <p>This page is open-sourced under MIT license, which means you can do <em>almost</em> whatever the heck you like with its source code.</p>
+                <p>This page is hosted on the personal homepage server provided by HKUST.</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui modal" id="shareModal"><i class="close icon"></i>
+        <div class="header">Share</div>
+        <div class="content">
+            <div class="ui center aligned grid">
+                <div class="row">
+                    <div class="ten column">
+                        <div class="ui medium form">
+                            <div class="inline field"><label>Copy link:</label>
+                                <div class="ui action input"><input type="text" value="http://xchenco.student.ust.hk/" readonly="readonly" id="siteUrl"> <button class="ui right icon button" id="copyButton" data-content="Copied!"><i class="copy icon"></i></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center aligned ten column">
+                        <div><a class="ui basic circular icon button" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="facebook f icon"></i> </a>
+                            <a class="ui basic circular icon button" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="twitter icon"></i> </a>
+                            <a class="ui basic circular plus icon button" href="https://plus.google.com/share?url=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="google plus g icon"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal" id="friendsModal"><i class="close icon"></i>
+        <div class="header">Link Exchange</div>
+        <div class="content">
+            <div class="ui doubling relaxed four column grid">
+                <div class="column"><a href="https://summerofcode.withgoogle.com/organizations/5382084590305280/#work-with-us">GoSC Official Page</a></div>
+                <div class="column"><a href="https://sites.google.com/site/distributedlittleredhen/summer-of-code/red-hen-lab---google-summer-of-code-2019-projects">Red Hen 2019 Projects</a></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
