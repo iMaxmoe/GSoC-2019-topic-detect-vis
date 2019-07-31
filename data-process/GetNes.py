@@ -41,7 +41,7 @@ def extractInfo(segPath, persons, organizations, locations, personPairs):
                                 for j in range(i+1, len(personList)):
 
                                     # Make sure there is no equivalent pair, since(a,b)<=>(b,a)
-                                    if personList[i] < personList[j]:
+                                    if personList[i] < personList[j]: # Alphabetic order
                                         pair = (personList[i], personList[j])
                                     else:
                                         pair = (personList[j], personList[i])
@@ -143,16 +143,22 @@ def extractDailyInfo(year, month, day):
     persons = sorted(persons.items(), key=lambda item:item[1], reverse=True)
     locations = sorted(locations.items(), key=lambda item:item[1], reverse=True)
     organizations = sorted(organizations.items(), key=lambda item:item[1], reverse=True)
+    personPairs = sorted(personPairs.items(), key=lambda item:item[1], reverse=True)
 
-    personPairs_ = dict() 
+    personPairs1 = dict() # for network
+    personPairs2 = dict() # for heatmap, only take 22 persons
 
-    # Will only look at part of people (TO_BE_MODIFIED)
-    for pair in personPairs.items():
+    personList = []
+    for pair in personPairs:
         if pair[1] > 3:
-            personPairs_[pair[0]] = pair[1]
-    
-    personPairs_ = sorted(personPairs_.items(), key=lambda item:item[0][0], reverse=False)
+            personPairs1[pair[0]] = pair[1]
+        if len(personList) < 22:
+            personPairs2[pair[0]] = pair[1]
+            if pair[0][0] not in personList:
+                personList.append(pair[0][0])
+            if pair[0][1] not in personList:
+                personList.append(pair[0][1])
 
-    return persons, organizations, personPairs_, locations, sentiment/len(filePathList)
+    return persons, organizations, personPairs1, personList, personPairs2, locations, sentiment/len(filePathList)
 
 

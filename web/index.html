@@ -2,23 +2,22 @@
 <html lang='en'>
 
 <head>
-    <title>June's Vis</title>
-    <meta name="description" content="GoSC news dashboard">
-    <meta property="og:description" content="GoSC news dashboard">
+    <meta charset="utf-8"/>
+    <title>Red Hen Lab's News Dashboard</title>
+    <meta name="description" content="Red Hen Lab's news dashboard"/>
+    <meta name="keywords" content="Red Hen Lab, Visualization, Dashboard, Google Summer of Code 2019"/>
+    <meta property="og:description" content="Red Hen Lab's news dashboard">
     <meta property="og:url" content="http://xchenco.student.ust.hk/">
-    <meta property="og:image" content="logal.png">
+    <meta property="og:image" content="logo.png">
     <meta property="og:type" content="website">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- CSS -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" integrity="sha256-oDCP2dNW17Y1QhBwQ+u2kLaKxoauWvIGks3a4as9QKs=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" href="home.css">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125898184-1"></script>
-
+    
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -31,12 +30,11 @@
     <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
     <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" integrity="sha256-RKNmL9+6j/3jB72OcIg8OQr91Bi4OgFPnKQOFS1O+fo=" crossorigin="anonymous"></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125898184-1"></script>
+    
     <script src="page.js"></script>
-    <script src="lollipop.js"></script>
-    <script src="wordcloud.js"></script>
 </head>
 
 <body>
@@ -59,41 +57,92 @@
             <i class="bars icon"></i>
         </button>
 
-        <div id="search-bar-wrapper" class="row">
-            <div class="col col-6 col-sm-3 col-md-1 col-lg-1 header-logo">
-                <img src="logo.png" alt="Red Hen" class="image" id="modal-logo" left>
+        <div class="g-header row">
+            <div class="logo">
+                <img src="logo.png" alt="Red Hen Lab's Logo" class="image" id="modal-logo" left>
             </div>
-
-            <div class="col col-12 col-sm-6 col-md-4 col-lg-4 title">
+            <div class="title">
                 <h1> Red Hen's News Dashboard</h1>
             </div>
-
-            <div class="col col-12 col-sm-6 col-md-4 col-lg-4 tag">
+            <div class="calendar">
                 <a>From</a>
                 <input type="date" id="from" name="from" min="2019-06-01" style="border-radius: 3px;">
                 <a>To</a>
                 <input type="date" id="to" name="to" min="2019-06-01" style="border-radius: 3px;">
+                <a class="btn">Go</a>
             </div>
-
-            <div class="col col-12 col-sm-6 col-md-2 col-lg-2 filter">
-                <span class="custom-dropdown">
-                    <form>
-                        <select required>
-                            <option value="" disabled selected hidden>Please Choose...</option>
-                            <option value="0">Person Counts</option>
-                            <option value="1">Occupation Counts</option>
-                        </select>
-                    </form>
-                </span>
+            <div class="filter">
+                <select class="custom-select">
+                    <option value="names">Top Mentioned Figures</option>
+                    <option value="events">Current Events(working)</option>
+                  </select>
             </div>
         </div>
 
-        <div class="row">
-            <div id="top10" class="col col-12 col-sm-6 col-md-5 col-lg-5 card top10">Card1</div>
-            <div id="wordcloud" class="col col-12 col-sm-6 col-md-5 col-lg-5 card wordcloud"></div>
+        <div class="g-body">
+            <div class="g-names">
+                <div class="row header"><h2>Top Mentioned People</h2></div>
+                <div class="row main">
+                    <div class="m-top10 card col col-12 col-sm-6 col-md-5 col-lg-5">
+                        <fieldset class="card-border">
+                            <legend>Top 10 Figures</legend>
+                            <div class="card-content">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="m-wordcloud card col col-12 col-sm-6 col-md-5 col-lg-5 card">
+                        <fieldset class="card-border">
+                            <legend>Overview</legend>
+                            <div class="card-content">
+                            </div>
+                        </fieldset>        
+                    </div>
+                </div>
+            </div>
+            <div class="g-jobs">
+                <div class="row header"><h2>People's Occupations</h2></div>
+                <div class="row main">
+                    <div class="m-top10 card col col-12 col-sm-6 col-md-5 col-lg-5">
+                        <fieldset class="card-border">
+                            <legend>Top 10 Occupations</legend>
+                            <div class="card-content">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="m-wordcloud card col col-12 col-sm-6 col-md-5 col-lg-5 card">
+                        <fieldset class="card-border">
+                            <legend>Overview</legend>
+                            <div class="card-content">
+                            </div>
+                        </fieldset>        
+                    </div>
+                </div>
+            </div>
+            <div class="g-relation">
+                <div class="row header"><h2>Relationship</h2></div>
+                <div class="row main">
+                    <div class="m-network card col col-12 col-sm-6 col-md-5 col-lg-5">
+                        <fieldset class="card-border">
+                                <legend>Social Network</legend>
+                                <div class="card-content">
+                                </div>                            
+                            </fieldset>                        
+                    </div>
+                    <div class="m-heatmap card col col-12 col-sm-6 col-md-5 col-lg-5">
+                        <fieldset class="card-border">
+                            <legend>Co-mentioned Frequency</legend>
+                            <div class="card-content">
+                            </div>                            
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="g-footer">
+                <p>@ Red Hen's Lab 2019</p>
+            </div>
         </div>
-
-        <div id="heatmap" class="row card">Card3</div>
+        
+        
 
         <!-- <div id="navbar">
             <text>
@@ -123,7 +172,8 @@
         <!-- <div id="left"></div>
         <div id="canvas"></div> -->
     </div>
-    </div>
+
+    <script src="plots.js"></script>
 
     <!-- Detailed content for side bar -->
     <div class="ui large basic modal" id="aboutModal"><i class="close icon"></i>

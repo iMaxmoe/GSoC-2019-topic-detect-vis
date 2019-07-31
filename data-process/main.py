@@ -21,8 +21,10 @@ def writeToJson(year, month, day):
     # !!!!!! Not Complete yet! Only store persons and sentiment value at present !!!!!!!!!!
 
     persons = GetNes.extractDailyInfo(year, month, day)[0]
-    personPairs = GetNes.extractDailyInfo(year, month, day)[2]
-    sentiment = GetNes.extractDailyInfo(year, month, day)[4]
+    pairs = GetNes.extractDailyInfo(year, month, day)[4]
+    axis = GetNes.extractDailyInfo(year, month, day)[3] # axis of heatmap
+    links = GetNes.extractDailyInfo(year, month, day)[2]
+    sentiment = GetNes.extractDailyInfo(year, month, day)[6]
 
     ## person counts
 
@@ -35,26 +37,35 @@ def writeToJson(year, month, day):
     dailyData['persons'] = personsArray
     dailyData['sentiment'] = sentiment
 
-    ## person pair counts
+    ## link counts
 
+    linkArray = []
+    nodeArray = [] # list of node items
+    nodeList = [] # list of persons
+
+    for pair in links.items():
+        if pair[0][0] not in nodeList:
+            nodeList.append(pair[0][0])
+        if pair[0][1] not in nodeList:
+            nodeList.append(pair[0][1])
+
+        linkArray.append({"source": pair[0][0], "target": pair[0][1], "value": pair[1]})
+
+    dailyData['links'] = linkArray
+
+    for node in nodeList:
+        nodeArray.append({"id": node})
+    dailyData['nodes'] = nodeArray
+
+
+    ## pair counts
+    dailyData["axis"] = axis
     pairArray = []
-
-    x_axis = []
-    y_axis = []
-
-    for pair in personPairs:
-
-        if pair[0][0] not in x_axis:
-            x_axis.append(pair[0][0])
-        if pair[0][1] not in y_axis:
-            y_axis.append(pair[0][1])
-
-        tuple_ = {"A": pair[0][0], "B": pair[0][1], "count": pair[1]}
-        pairArray.append(tuple_)
+    
+    for pair in pairs.items():
+        pairArray.append({"source": pair[0][0], "target": pair[0][1], "value": pair[1]})
 
     dailyData['pairs'] = pairArray
-    dailyData['pairX'] = x_axis
-    dailyData['pairY'] = y_axis
 
 
     # From GetOccupation
@@ -84,7 +95,9 @@ def writeToJson(year, month, day):
 
 year = "2019"
 month = "06"
-day = ["{}".format(i) for i in range(1,11)]
+# day = ["{}".format(i) for i in range(1,11)]
 
-for d in day:
-    writeToJson(year, month, d)
+# for d in day:
+#     writeToJson(year, month, d)
+
+writeToJson("2019","6","1")

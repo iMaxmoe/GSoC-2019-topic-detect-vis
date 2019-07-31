@@ -95,47 +95,6 @@ body.pushable>.pusher {
     z-index: -1
 }
 
-#page-title {
-    font-size: 4rem;
-    font-weight: lighter
-}
-
-#search-bar-wrapper {
-    text-align: center;
-    background-color: #333;
-    overflow: hidden;
-}
-
-#search-bar-wrapper .header-logo {
-    text-align: center;
-    padding: 10px 70px;
-}
-
-#search-bar-wrapper .title {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold';
-    text-align: left;
-    color: #f2f2f2;
-    padding: 30px 0px 0px 40px;
-}
-
-#search-bar-wrapper .filter {
-    color: #f2f2f2;
-    font-weight: bold;
-    text-align: center;
-    padding: 27px 10px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-#search-bar-wrapper .tag {
-    color: #f2f2f2;
-    font-weight: bold;
-    text-align: center;
-    padding: 35px 10px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
 .ui.form.flex-form {
     display: flex;
     margin: 0;
@@ -261,11 +220,6 @@ body.pushable>.pusher {
     flex-wrap: wrap;
 }
 
-.card {
-    background-color: rgb(204, 192, 194);
-    color: white;
-}
-
 #top10 {
     flex-grow: 1;
     /* Try to resize window < 600px */
@@ -296,3 +250,39 @@ body.pushable>.pusher {
     min-height: 90vh;
     text-align: center;
 }
+
+.g-header{z-index:-1;text-align:center; background-color:#333; overflow:hidden;}
+.g-header .logo{position:relative;padding:13px 5px 8px 58px;}
+.g-header .title{position:relative;padding:30px 0px;text-align:left;color:#f2f2f2;font-family:Impact,Haettenschweiler,'Arial Narrow Bold';}
+.g-header .calendar{position:relative;margin:35px 50px 30px 70px;padding-right:60px;text-align:center;color:#f2f2f2;font-size:18px;font-weight:bold;}
+.g-header .calendar>.btn{position:absolute;top:0;right:3px;background-color:lightseagreen;color:white;}
+.g-header .filter{position:absolute;top:1px;right:25px;padding:33px 0px 30px 20px;}
+.g-header .filter select{padding:6px 27px 6px 6px;background-color:lightseagreen;color:white;} 
+
+.g-body{background-color:gainsboro;}
+.g-names,.g-jobs{height:564px;}
+.g-relation{height:634px;}
+.g-names .header,.g-jobs .header,.g-relation .header{position: relative;padding:30px 0 0px 85px;}
+.g-names .header h2,.g-jobs .header h2,.g-relation .header h2{padding:5px 20px;border-radius:2px;font-family:Impact;color:white;background-color:lightseagreen;}
+.main{height:500px;}
+.g-relation .main{height:590px !important;}
+.m-top10,.m-network{margin:20px 20px 20px 85px;}
+.m-wordcloud,.m-heatmap{margin:20px 25px 20px 20px;}
+
+.card {height:480px;background-color:#fefefe;border-radius:8px;}
+.card-border{height:460px;padding:2.1em 1.4em 1.3em 1.4em;border: 1px groove #555;-webkit-box-shadow:0px 0px 0px 0px #000;box-shadow:  0px 0px 0px 0px #000;}
+.card-border legend{width:inherit;padding:0 10px;border-bottom:none;font-size:1.4em;font-weight:bold;text-align:left;color:#444;}
+.card-content{position:absolute;top:35px;left:40px;}
+.g-relation .card{height:530px !important;}
+.g-relation .card-border{height:510px !important;}
+.g-relation .card-content{left:20px;}
+
+.circle:hover{fill:brown !important;stroke-width:1.5px;}
+.words:hover{fill:rgb(89, 165, 226) !important;}
+.square:hover{fill:rgb(165, 71, 42) !important;}
+
+.nodes circle {stroke: #fff;stroke-width: 1.5px;}
+.m-network svg text {font-family: sans-serif;font-size: 10px;}
+
+.g-footer{height:80px;text-align:center;}
+.g-footer p{padding:20px 10px;margin:35px;color:#444;}
