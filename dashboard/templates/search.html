@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Red Hen Lab's News Dashboard</title>
+    <meta name="description" content="Red Hen Lab's news dashboard"/>
+    <meta name="keywords" content="Red Hen Lab, Visualization, Dashboard, Google Summer of Code 2019"/>
+    <meta property="og:description" content="Red Hen Lab's news dashboard">
+    <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}">
+    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" integrity="sha256-oDCP2dNW17Y1QhBwQ+u2kLaKxoauWvIGks3a4as9QKs=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <script src="{{ url_for('static', filename='external/d3.layout.cloud.js') }}"></script>
+    <script src="{{ url_for('static', filename='external/require.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" integrity="sha256-RKNmL9+6j/3jB72OcIg8OQr91Bi4OgFPnKQOFS1O+fo=" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125898184-1"></script>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='page.js') }}"></script>
+</head>
+
+<body>
+    <aside class="ui sidebar inverted large vertical menu mobile hide">
+        <div class="item">
+            <header class="ui vertical segment inverted center aligned icon header"><img src="{{ url_for('static', filename='logo.png') }}" alt=" logo" class="icon" id="sidebar-logo">
+                <div class="content"></div>
+            </header>
+        </div>
+        <a class="item" href="#"><i class="map icon"></i>Dashboard</a>
+        <a class="item" hred="#"><i class="search icon"></i>Event Search(Working)</a>
+        <a href="https://github.com/iMaxmoe/GSoC-2019-topic-detect-vis" class="item"><i class="github icon"></i>View on Github</a>
+        <a href="#" class="item aboutTriggerer"><i class="gem outline icon"></i>License, credit and stuff</a>
+        <a href="#" class="item shareTriggerer"><i class="share icon"></i>Share this website</a>
+        <a href="#" class="item friendsTriggerer"><i class="thumbs up outline icon"></i>Link exchange</a>
+    </aside>
+
+    <div class="pusher">
+        <button class="ui black top upper attached big icon button toggler mobile hide">
+            <i class="bars icon"></i>
+        </button>
+
+        <div class="g-header row">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Red Hen Lab's Logo" class="image" id="modal-logo" left>
+            </div>
+            <div class="title">
+                <h1> Red Hen's News Dashboard</h1>
+            </div>
+            
+            <div class="m-searchbar">
+                <form method="POST">
+                    <input type="text" name="name" placeholder="    Please input the full name of the person you are interetsed in:    ">
+                    <button class="button" type="submit">Search</button>
+                </form>                
+            </div>
+            
+            <div class="filter">
+                <select class="custom-select" onchange="if (this.value!='/search') window.location.href=this.value">
+                    <option value="/">Top Mentioned Figures</option>
+                    <option value="/search">Search persons</option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="g-body">
+            <div class="g-profile">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="row title">{{ name }}</div>
+                        <div class="row m-barchart"></div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 m-donutchart"></div>
+                </div>
+            </div>
+            <div class="g-footer">
+                <p>@ Red Hen's Lab 2019</p>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='plot.js') }}"></script>
+    <script type="text/javascript">
+        var jsonFile = {{ jsonFile|safe }};
+        drawTrend(jsonFile, ".m-barchart");
+        drawDonut(jsonFile, ".m-donutchart");
+    </script>
+
+    <!-- Detailed content for side bar -->
+    <div class="ui large basic modal" id="aboutModal"><i class="close icon"></i>
+        <div class="header">License, credit and stuff</div>
+        <div class="image content"><img src="{{ url_for('static', filename='logo.png') }}" alt="Red Hen" class="image" id="modal-logo">
+            <div class="description">
+                <p>This page is open-sourced under MIT license, which means you can do <em>almost</em> whatever the heck you like with its source code.</p>
+                <p>This page is hosted on the personal homepage server provided by HKUST.</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui modal" id="shareModal"><i class="close icon"></i>
+        <div class="header">Share</div>
+        <div class="content">
+            <div class="ui center aligned grid">
+                <div class="row">
+                    <div class="ten column">
+                        <div class="ui medium form">
+                            <div class="inline field"><label>Copy link:</label>
+                                <div class="ui action input"><input type="text" value="http://xchenco.student.ust.hk/" readonly="readonly" id="siteUrl"> <button class="ui right icon button" id="copyButton" data-content="Copied!"><i class="copy icon"></i></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center aligned ten column">
+                        <div><a class="ui basic circular icon button" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="facebook f icon"></i> </a>
+                            <a class="ui basic circular icon button" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="twitter icon"></i> </a>
+                            <a class="ui basic circular plus icon button" href="https://plus.google.com/share?url=http%3A%2F%2Fxchenco.student.ust.hk%2F"><i class="google plus g icon"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui basic modal" id="friendsModal"><i class="close icon"></i>
+        <div class="header">Link Exchange</div>
+        <div class="content">
+            <div class="ui doubling relaxed four column grid">
+                <div class="column"><a href="https://summerofcode.withgoogle.com/organizations/5382084590305280/#work-with-us">GoSC Official Page</a></div>
+                <div class="column"><a href="https://sites.google.com/site/distributedlittleredhen/summer-of-code/red-hen-lab---google-summer-of-code-2019-projects">Red Hen 2019 Projects</a></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
